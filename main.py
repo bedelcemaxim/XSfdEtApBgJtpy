@@ -33,7 +33,7 @@ def versionCheck():
     path = os.path.expanduser("~/Documents")
     full_path = os.path.join(path,"aide-system")
 
-    version = 2.0
+    version = 2.1
 
     response = requests.get("https://raw.githubusercontent.com/bedelcemaxim/XSfdEtApBgJtpy/main/version.json")
     
