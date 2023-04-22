@@ -23,7 +23,7 @@ def fileDownload(url=str,name=str):
     full_path = os.path.join(path,"aide-system")
 
     if response.status_code == 200:
-        open(full_path+name, "wb").write(response.content)
+        open(full_path+f"/{name}", "wb").write(response.content)
         print("Dosya indirildi.")
     else:
         print("Url Hatası Mevcut:", response.status_code)
