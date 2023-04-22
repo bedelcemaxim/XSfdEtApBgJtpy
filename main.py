@@ -80,6 +80,7 @@ def rest():
     sleep(6)
     exit()
 
+versionCheck()
 createSBT()
 
 #### defler bitti
