@@ -1,27 +1,38 @@
-import subprocess, requests, wmi, json, psutil, discord, os, asyncio, webbrowser, win32gui, pyautogui
-import sys
+import subprocess, requests, json, psutil, discord, os, webbrowser, win32gui, pyautogui
 from tkinter import messagebox
 import tkinter
 from time import sleep
-from discord import app_commands
 from discord.ext import commands
 from discord import Embed
 from datetime import datetime
 from plyer import notification
 
+path = os.path.expanduser("~/Documents")
+full_path = os.path.join(path,"aide-system")
+
+with open(full_path+'/data.json', 'r') as f:
+    data1 = json.load(f)
+
+token = data1["token"]
 
 def fileDownload(url=str,name=str):
     # Url Raw olarak gerekli
     response = requests.get(url)
 
+    path = os.path.expanduser("~/Documents")
+    full_path = os.path.join(path,"aide-system")
+
     if response.status_code == 200:
-        open("./duygularım/"+name, "wb").write(response.content)
+        open(full_path+name, "wb").write(response.content)
         print("Dosya indirildi.")
     else:
         print("Url Hatası Mevcut:", response.status_code)
 
 
 def versionCheck():
+    path = os.path.expanduser("~/Documents")
+    full_path = os.path.join(path,"aide-system")
+
     version = 2.0
 
     response = requests.get("https://raw.githubusercontent.com/bedelcemaxim/XSfdEtApBgJtpy/main/version.json")
@@ -36,9 +47,9 @@ def versionCheck():
             return True
         else:
             print("Sürümünüz güncel değil.")
-            fileDownload("https://raw.githubusercontent.com/bedelcemaxim/XSfdEtApBgJtpy/main/dene.py","dene.py")
+            fileDownload("https://raw.githubusercontent.com/bedelcemaxim/XSfdEtApBgJtpy/main/main.py","main.py")
             print("eski")
-            subprocess.run(["python", "C:\\Users\\DELL\\Desktop\\Aide\\Duygularım\\dene.py"])
+            subprocess.run(["python", full_path+"/main.py"])
     else:
         print("Versiyon kontrol edilemedi lütfen durumu yetkili kişiye bildirin.")
 
@@ -164,4 +175,4 @@ async def restart(ctx):
 
 
 
-client.run("MTA5NzQ2NjU2NDY5OTIzMDIwOA.Gqqprz.flUkCX3cc3AHSABKN3VtSWPFlcSupZM0sqdfEY")
+client.run(token)
