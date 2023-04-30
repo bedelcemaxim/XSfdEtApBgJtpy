@@ -33,7 +33,7 @@ def versionCheck():
     path = os.path.expanduser("~/Documents")
     full_path = os.path.join(path,"aide-system")
 
-    version = 2.1
+    version = 2.2
 
     response = requests.get("https://raw.githubusercontent.com/bedelcemaxim/XSfdEtApBgJtpy/main/version.json")
     
@@ -48,8 +48,10 @@ def versionCheck():
         else:
             print("Sürümünüz güncel değil.")
             fileDownload("https://raw.githubusercontent.com/bedelcemaxim/XSfdEtApBgJtpy/main/main.py","main.py")
-            print("eski")
+            print("Eski")
             subprocess.run(["python", full_path+"/main.py"])
+            sleep(2)
+            exit()
     else:
         print("Versiyon kontrol edilemedi lütfen durumu yetkili kişiye bildirin.")
 
@@ -71,7 +73,10 @@ def createSBT():
     print("[INFO] Başlangıç dosyaları yazdırıldı.")
 
 def systemBootTime():
-    with open("data.json","r") as json_file:
+    path = os.path.expanduser("~/Documents")
+    full_path = os.path.join(path,"aide-system")
+
+    with open(full_path+"/data.json","r") as json_file:
         data = json.load(json_file)
         return data['system-start']
 
